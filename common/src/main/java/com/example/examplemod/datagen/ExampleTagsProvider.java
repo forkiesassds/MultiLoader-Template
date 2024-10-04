@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 import java.util.concurrent.CompletableFuture;
 
 public class ExampleTagsProvider extends FabricTagProvider.ItemTagProvider {
-    private static final TagKey<Item> FRUIT = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "fruit"));
+    private static final TagKey<Item> FRUIT = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "fruit"));
 
     public ExampleTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
@@ -21,6 +21,6 @@ public class ExampleTagsProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        getOrCreateTagBuilder(FRUIT).add(Items.APPLE, Items.SWEET_BERRIES);
+        ((FabricTagBuilder)tag(FRUIT)).add(Items.APPLE, Items.SWEET_BERRIES);
     }
 }

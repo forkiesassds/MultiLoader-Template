@@ -26,9 +26,9 @@ to setting up Forge and Fabric independently and should be very familiar to anyo
    this should match the folder name of your project, or else IDEA may complain.
 3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README file and the
    gradlew executable.
-4. If your default JVM/JDK is not Java 17 you will encounter an error when opening the project. This error is fixed by
+4. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by
    going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM`and changing the value
-   to a valid Java 17 JVM. You will also need to set the Project SDK to Java 17. This can be done by going
+   to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going
    to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the
    refresh button to reload the project.
 5. Open the Gradle tab in IDEA if it has not already been opened. Navigate

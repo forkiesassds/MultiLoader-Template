@@ -6,37 +6,28 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_name}-forge-${minecraft_version}"
+    archivesName = "${mod_name}-neoforge-${minecraft_version}"
 }
 
 loom {
-    forge {
-        mixinConfig "${mod_id}.mixins.json"
-        mixinConfig "${mod_id}.forge.mixins.json"
-
-        convertAccessWideners = true
-    }
-
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
+    accessWidenerPath = project(":common").loom.accessWidenerPath
 
     runs {
         client {
             client()
-            setConfigName("Forge Client")
+            setConfigName("NeoForge Client")
             ideConfigGenerated(true)
             runDir("run")
         }
         server {
             server()
-            setConfigName("Forge Server")
+            setConfigName("NeoForge Server")
             ideConfigGenerated(true)
             runDir("run")
         }
         datagen {
             data()
-            setConfigName("Forge Datagen")
+            setConfigName("NeoForge Datagen")
             programArgs("--mod", "${mod_id}", "--all", "--output", file("src/generated/resources").absolutePath)
             ideConfigGenerated(true)
             runDir("run")
@@ -51,15 +42,19 @@ repositories {
         name = "Sinytra"
         url = "https://maven.su5ed.dev/releases"
     }
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
     mavenLocal()
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    neoForge "net.neoforged:neoforge:${neoforge_version}"
     mappings loom.officialMojangMappings()
 
-    modImplementation "dev.su5ed.sinytra.fabric-api:fabric-api:${forge_fabric_version}"
+    modImplementation "org.sinytra.forgified-fabric-api:forgified-fabric-api:${forgified_fabric_version}"
 
     compileOnly project(":common")
 }

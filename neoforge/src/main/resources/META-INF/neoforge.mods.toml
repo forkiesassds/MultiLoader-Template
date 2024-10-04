@@ -1,4 +1,4 @@
-# This is an example mods.toml file. It contains the data relating to the loading mods.
+# This is an example neoforge.mods.toml file. It contains the data relating to the loading mods.
 # There are several mandatory fields (#mandatory), and many more that are optional (#optional).
 # The overall format is standard TOML format, v0.5.0.
 # Note that there are a couple of TOML lists in this file.
@@ -11,6 +11,13 @@ loaderVersion="${loader_version_range}" #mandatory This is typically bumped ever
 license = "${mod_license}"
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="${mod_issue_tracker_url}" #optional
+
+# Mixin config files, these are for both common and NeoForge.
+[[mixins]]
+    config = "examplemod.mixins.json"
+[[mixins]]
+    config = "examplemod.neoforge.mixins.json"
+
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -41,11 +48,11 @@ authors = "${mod_author}" #optional
 description='''${mod_description}'''
 [[dependencies.'${mod_id}']] #optional
     # the modid of the dependency
-    modId = "forge" #mandatory
+    modId = "neoforge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory = true #mandatory
     # The version range of the dependency
-    versionRange = "${forge_version_range}" #mandatory
+    versionRange = "${neoforge_version_range}" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the dependency is not mandatory
     # BEFORE - This mod is loaded BEFORE the dependency
     # AFTER - This mod is loaded AFTER the dependency    
@@ -56,14 +63,14 @@ description='''${mod_description}'''
     modId = "minecraft"
     mandatory = true
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange = "${forge_minecraft_version_range}"
+    versionRange = "${neoforge_minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"
 [[dependencies.'${mod_id}']]
     modId = "fabric_api"
     mandatory = true
     # This version range declared a minimum of the current forgified fabric api version up to any later version
-    versionRange = "[${forge_fabric_version},)"
+    versionRange = "[${forgified_fabric_version},)"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
